@@ -1,0 +1,13 @@
+train: /Data/train
+val: /Data/valid
+test: /Data/test
+
+nc: 3
+names: ['-', 'Cow Lie Stand Walk']
+
+roboflow:
+  workspace: cattle-detection-fuwlj
+  project: cattle-detection-yprhp
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/cattle-detection-fuwlj/cattle-detection-yprhp/dataset/1

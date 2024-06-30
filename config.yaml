@@ -1,0 +1,8 @@
+epochs: 100          # Número de épocas de entrenamiento
+batch: 32            # Tamaño del batch
+lr0: 0.001           # Tasa de aprendizaje inicial
+weight_decay: 1e-4   # Decaimiento del peso (regularización)
+momentum: 0.9        # Momento del optimizador
+imgsz: 640           # Tamaño de la imagen de entrada
+patience: 10         # Paciencia para early stopping
+cos_lr: true         # Activar Cosine Annealing LR
