@@ -1,5 +1,5 @@
 epochs: 100          # Número de épocas de entrenamiento
-batch: 32            # Tamaño del batch
+batch: 16            # Tamaño del batch
 lr0: 0.001           # Tasa de aprendizaje inicial
 weight_decay: 1e-4   # Decaimiento del peso (regularización)
 momentum: 0.9        # Momento del optimizador
