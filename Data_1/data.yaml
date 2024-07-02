@@ -1,0 +1,13 @@
+train: D:\Mlops_models\Data_1\train
+val: D:\Mlops_models\Data_1\valid
+test: D:\Mlops_models\Data_1\test
+
+nc: 1
+names: ['cattle']
+
+roboflow:
+  workspace: thesis-3c51t
+  project: cow-counting
+  version: 12
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/thesis-3c51t/cow-counting/dataset/12

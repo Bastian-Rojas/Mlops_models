@@ -10,7 +10,7 @@ command = (
     f"yolo task=detect mode=train "
     f"epochs={config['epochs']} "
     f"data=data.yaml "
-    f"model=yolov8n.pt "
+    f"model=yolov8l.pt "
     f"imgsz={config['imgsz']} "
     f"batch={config['batch']} "
     f"lr0={config['lr0']} "
