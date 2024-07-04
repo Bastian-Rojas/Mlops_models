@@ -26,8 +26,8 @@ def validate_image(image_path, model):
     return prediction
 
 if __name__ == "__main__":
-    model_path = 'D:/Mlops_models/best.pt'
-    image_path = 'D:/Mlops_models/Data_1/valid/images'  
+    model_path = 'best.pt'
+    image_path = './Data_1/valid/images'  
     
     model = load_model(model_path)
     confidence = validate_image(image_path, model)
