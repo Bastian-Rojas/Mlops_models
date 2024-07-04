@@ -27,7 +27,7 @@ def validate_image(image_path, model):
 
 if __name__ == "__main__":
     model_path = 'best.pt'
-    image_path = './Data_1/valid/images'  
+    image_path = 'D:\Mlops_models\Data_1\valid\images\20_jpg.rf.7b3d4b4e991d768c4a111d4b00db1ced.jpg'  
     
     model = load_model(model_path)
     confidence = validate_image(image_path, model)
