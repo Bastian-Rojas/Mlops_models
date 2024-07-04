@@ -18,7 +18,6 @@ pipeline {
                    pip install numpy  
                    pip install pyyaml
                    pip install python-telegram-bot  
-                   pip install 'git+https://github.com/ultralytics/yolov5.git'
                 '''
             }
         }

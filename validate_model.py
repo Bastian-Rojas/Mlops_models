@@ -1,6 +1,5 @@
 import torch
 import torchvision.transforms as transforms
-from torchvision import models
 from PIL import Image
 
 # Definir transformaciones para las imágenes
@@ -11,10 +10,8 @@ transform = transforms.Compose([
 ])
 
 def load_model(model_path):
-    model = models.resnet18(pretrained=False)
-    num_ftrs = model.fc.in_features
-    model.fc = torch.nn.Linear(num_ftrs, 1)  # Capa final para clasificación binaria
-    model.load_state_dict(torch.load(model_path))
+    # Cargar tu modelo personalizado
+    model = torch.load(model_path, map_location=torch.device('cpu'))  # Ajusta 'cpu' o 'cuda' según tu configuración
     model.eval()
     return model
 
@@ -25,13 +22,13 @@ def validate_image(image_path, model):
     with torch.no_grad():
         output = model(image)
     
-    prediction = torch.sigmoid(output).item()  # Aplicar sigmoid para obtener una probabilidad entre 0 y 1
+    prediction = output.item("cattle")  
     
     return prediction
 
 if __name__ == "__main__":
-    model_path = 'best.pt'
-    image_path = 'D:\Mlops_models\Data_1\valid\images'
+    model_path = 'D:\Mlops_models\best.pt'  
+    image_path = 'D:\Mlops_models\Data_1\valid\images'  
     
     model = load_model(model_path)
     confidence = validate_image(image_path, model)
