@@ -21,7 +21,7 @@ def validate_image(image_path, model):
     with torch.no_grad():
         output = model(image)
     
-    prediction = output.item()  # Asumiendo que el modelo devuelve un solo valor de predicción
+    prediction = output.item()  
     
     return prediction
 
