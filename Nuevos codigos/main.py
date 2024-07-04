@@ -7,7 +7,7 @@ from video_processor import process_video
 from image_processor import process_images
 import telegram_bot
 
-model = load_model("best.pt")  # Asumimos que el modelo se carga aquí correctamente
+model = load_model("best2.pt")
 
 
 def start_bot_thread(root):
@@ -46,27 +46,24 @@ def create_main_window():
     root.title("Detección de Objetos con YOLO y Telegram")
     root.minsize(500, 300)
 
-    # Cargar y colocar la imagen de fondo
-    background_image = PhotoImage(file='Vaca.png')  # Asegúrate de poner la ruta correcta a tu imagen
+
+    background_image = PhotoImage(file='Vaca.png')
     background_label = tk.Label(root, image=background_image)
     background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-    # Configurar estilo
-    style = ttk.Style(root)
-    style.theme_use('clam')  # Puedes elegir entre 'alt', 'default', 'classic', 'vista', etc.
 
-    # Menú
+    style = ttk.Style(root)
+    style.theme_use('clam')
+
     menubar = tk.Menu(root)
     filemenu = tk.Menu(menubar, tearoff=0)
     filemenu.add_command(label="Salir", command=lambda: root.quit())
     menubar.add_cascade(label="Archivo", menu=filemenu)
     root.config(menu=menubar)
 
-    # Frame para centrar los botones
     frame = ttk.Frame(root)
     frame.place(relx=0.5, rely=0.5, anchor='center')  # Centrar el frame
 
-    # Widgets en el frame
     btn_video = ttk.Button(frame, text="Seleccionar Video", command=lambda: select_video(root))
     btn_video.pack(pady=10, fill='x')
 
@@ -77,7 +74,6 @@ def create_main_window():
                               command=lambda: threading.Thread(target=lambda: start_bot_thread(root)).start())
     btn_telegram.pack(pady=10, fill='x')
 
-    # Mantener la referencia a la imagen de fondo
     root.background_image = background_image
 
     return root

@@ -33,7 +33,7 @@ def process_images(directory_path, model):
             image = cv2.imread(image_path)
 
             # Realizar predicciones en la imagen
-            results = model.predict(image, imgsz=640, conf=0.8)
+            results = model.predict(image, imgsz=640, conf=0.7)
 
             # Anotar y mostrar la imagen
             for result in results:
