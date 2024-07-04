@@ -18,7 +18,7 @@ pipeline {
                    python3 -m venv venv
                    . venv/bin/activate
                    pip install --upgrade pip
-                   pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+                   pip install torch torchvision torchaudio
                    pip install numpy  
                    pip install pyyaml
                    pip install python-telegram-bot  
