@@ -14,9 +14,9 @@ pipeline {
                    python3 -m venv venv
                    . venv/bin/activate
                    pip install --upgrade pip
-                   pip install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
-                   pip install numpy  # Asegúrate de incluir otras bibliotecas necesarias
-                   pip install python-telegram-bot  # Instalar la biblioteca para Telegram
+                   pip install torch torchvision torchaudio
+                   pip install numpy  
+                   pip install python-telegram-bot  
                 '''
             }
         }
