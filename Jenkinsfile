@@ -18,6 +18,7 @@ pipeline {
                    pip install numpy  
                    pip install pyyaml
                    pip install python-telegram-bot  
+                   pip install ultralytics
                 '''
             }
         }
