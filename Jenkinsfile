@@ -23,7 +23,7 @@ pipeline {
         
         stage('Train Model') {
             steps {
-                sh '. venv/bin/activate && python train_model.py'
+                sh '. venv/bin/activate && python train.py'
             }
         }
         
