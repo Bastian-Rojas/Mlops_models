@@ -1,7 +1,7 @@
 import torch
 import torchvision.transforms as transforms
 from PIL import Image
-
+import os
 
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -21,13 +21,16 @@ def validate_image(image_path, model):
     with torch.no_grad():
         output = model(image)
     
-    prediction = output.item("cattle")  
+    prediction = output.item()  # Asumiendo que el modelo devuelve un solo valor de predicción
     
     return prediction
 
 if __name__ == "__main__":
     model_path = 'best.pt'
-    image_path = 'D:\Mlops_models\Data_1\valid\images\20_jpg.rf.7b3d4b4e991d768c4a111d4b00db1ced.jpg'  
+    # Ruta base del directorio de datos
+    base_dir = r'D:\Mlops_models\Data_1\valid'
+    image_filename = '20_jpg.rf.7b3d4b4e991d768c4a111d4b00db1ced.jpg'
+    image_path = os.path.join(base_dir, 'images', image_filename)
     
     model = load_model(model_path)
     confidence = validate_image(image_path, model)
