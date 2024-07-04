@@ -1,13 +1,13 @@
-train: D:\Mlops_models\Data\train
-val: D:\Mlops_models\Data\valid
-test: D:\Mlops_models\Data\test
+train: D:\Mlops_models\Data_1\train
+val: D:\Mlops_models\Data_1\valid
+test: D:\Mlops_models\Data_1\test
 
-nc: 3
-names: ['-', 'Cow Lie Stand Walk - v2 2023-02-28 10-07am', 'This dataset was exported via roboflow.com on February 28- 2023 at 4-50 PM GMT']
+nc: 1
+names: ['cattle']
 
 roboflow:
-  workspace: cattle-detection-fuwlj
-  project: cattle-detection-yprhp
-  version: 1
+  workspace: thesis-3c51t
+  project: cow-counting
+  version: 12
   license: CC BY 4.0
-  url: https://universe.roboflow.com/cattle-detection-fuwlj/cattle-detection-yprhp/dataset/1
+  url: https://universe.roboflow.com/thesis-3c51t/cow-counting/dataset/12
