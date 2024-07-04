@@ -11,8 +11,8 @@ pipeline {
         stage('Install System Dependencies') {
             steps {
                 sh '''
-                   sudo apt-get update
-                   sudo apt-get install -y libgl1
+                   apt-get update
+                   apt-get install -y libgl1
                 '''
             }
         }
