@@ -14,7 +14,8 @@ pipeline {
                    python3 -m venv venv
                    . venv/bin/activate
                    pip install --upgrade pip
-                   pip install torch==2.3.1+cu121 torchvision==0.18.1+cu121 numpy==1.26.4
+                   pip install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
+                   pip install numpy  # Asegúrate de incluir otras bibliotecas necesarias
                    pip install python-telegram-bot  # Instalar la biblioteca para Telegram
                 '''
             }
@@ -35,9 +36,7 @@ pipeline {
         stage('Use Telegram Bot') {
             steps {
                 script {
-                    // Definir la ruta completa al archivo telegram_bot.py
                     def telegramBotPath = "${WORKSPACE}\\Nuevos codigos\\telegram_bot.py"
-                    // Ejecutar el script usando el entorno virtual
                     sh ". venv/bin/activate && python ${telegramBotPath}"
                 }
             }
