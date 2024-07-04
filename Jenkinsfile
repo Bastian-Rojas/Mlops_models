@@ -16,6 +16,7 @@ pipeline {
                    pip install --upgrade pip
                    pip install torch torchvision torchaudio
                    pip install numpy  
+                   pip install pyyaml
                    pip install python-telegram-bot  
                 '''
             }
