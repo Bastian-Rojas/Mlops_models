@@ -18,7 +18,6 @@ pipeline {
                    pip install numpy  
                    pip install pyyaml
                    pip install python-telegram-bot  
-                   apt-get update && apt-get install -y libgl1-mesa-glx  # Instala libGL
                    pip install ultralytics
                 '''
             }
@@ -39,7 +38,7 @@ pipeline {
         stage('Use Telegram Bot') {
             steps {
                 script {
-                    def telegramBotPath = "${WORKSPACE}\\Nuevos codigos\\telegram_bot.py"
+                    def telegramBotPath = "${WORKSPACE}/Nuevos codigos/telegram_bot.py"
                     sh ". venv/bin/activate && python ${telegramBotPath}"
                 }
             }
