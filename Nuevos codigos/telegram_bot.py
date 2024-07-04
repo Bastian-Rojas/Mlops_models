@@ -16,8 +16,8 @@ async def send_message(chat_id, message):
         print(f"Error al enviar mensaje: {e}")
 
 async def process_video():
-    model = YOLO("best.pt")  # Asumiendo que este es el path correcto del modelo
-    cap = cv2.VideoCapture(0)  # Asumiendo que se utiliza la cámara web por defecto
+    model = YOLO("best2.pt")
+    cap = cv2.VideoCapture(2)
 
     if not cap.isOpened():
         print("Error: No se pudo abrir la cámara.")
@@ -27,6 +27,8 @@ async def process_video():
     await send_message(CHAT_ID, "Bienvenido al bot de mlops para detección de vacas")
 
     detected_cattle = False
+    last_detection_time = time.time()
+    last_multiple_detection_time = time.time()
     start_time = time.time()
 
     while True:
@@ -35,31 +37,45 @@ async def process_video():
             print("Error: No se puede leer el video de la cámara.")
             break
 
-        # Procesamiento de la imagen con el modelo YOLO
-        results = model.predict(frame, imgsz=640, conf=0.8)
+        results = model(frame)
 
-        # Revisar los resultados para encontrar 'cattle'
+        print(results)
+
+        cattle_count = 0
+
         for result in results:
-            for detection in result:
-                if len(detection) < 6:
-                    continue  # Skip if the detection does not contain enough values
-
-                x1, y1, x2, y2, conf, cls_idx = detection[:6]
+            boxes = result.boxes.cpu().numpy()
+            for box in boxes:
+                x1, y1, x2, y2 = box.xyxy[0]
+                conf = box.conf[0]
+                cls_idx = box.cls[0]
                 label = model.names[int(cls_idx)]
                 if label.lower() == "cattle" and conf > 0.8:
+                    cattle_count += 1
                     detected_cattle = True
-                    await send_message(CHAT_ID, "Cattle detectado con confianza {:.2f}".format(conf))
+                    current_time = time.time()
+                    if current_time - last_detection_time > 10:
+                        await send_message(CHAT_ID, "Vaca detectada con confianza {:.2f}".format(conf))
+                        last_detection_time = current_time
+                    # Dibujar un rectángulo alrededor del objeto detectado
+                    cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
+                    # Añadir etiqueta de confianza
+                    cv2.putText(frame, f'{label} {conf:.2f}', (int(x1), int(y1) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+
+        current_time = time.time()
+        if cattle_count > 1 and current_time - last_multiple_detection_time > 10:
+            await send_message(CHAT_ID, f"Se detectaron {cattle_count} vacas.")
+            last_multiple_detection_time = current_time
 
         cv2.imshow('Video', frame)
         if cv2.waitKey(1) == 27:  # Esc para salir
             break
 
-        # Verificar si ha pasado suficiente tiempo y enviar un mensaje
-        if time.time() - start_time > 15:  # cada 15 segundos
+        if time.time() - start_time > 20:
             if detected_cattle:
-                await send_message(CHAT_ID, "Cattle detectado en los últimos 15 segundos.")
-                detected_cattle = False  # Restablece la detección
-            start_time = time.time()  # Reinicia el contador
+                await send_message(CHAT_ID, "Vaca detectada en los últimos 20 segundos.")
+                detected_cattle = False
+            start_time = time.time()
 
     cap.release()
     cv2.destroyAllWindows()
