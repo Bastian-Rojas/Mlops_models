@@ -2,7 +2,7 @@ import torch
 import torchvision.transforms as transforms
 from PIL import Image
 
-# Definir transformaciones para las imágenes
+
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
@@ -10,8 +10,7 @@ transform = transforms.Compose([
 ])
 
 def load_model(model_path):
-    # Cargar tu modelo personalizado
-    model = torch.load(model_path, map_location=torch.device('cpu'))  # Ajusta 'cpu' o 'cuda' según tu configuración
+    model = torch.load(model_path, map_location=torch.device('cuda'))  
     model.eval()
     return model
 
@@ -27,8 +26,8 @@ def validate_image(image_path, model):
     return prediction
 
 if __name__ == "__main__":
-    model_path = 'D:\Mlops_models\best.pt'  
-    image_path = 'D:\Mlops_models\Data_1\valid\images'  
+    model_path = 'D:/Mlops_models/best.pt'
+    image_path = 'D:/Mlops_models/Data_1/valid/images'  
     
     model = load_model(model_path)
     confidence = validate_image(image_path, model)
