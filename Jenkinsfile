@@ -18,6 +18,7 @@ pipeline {
                    pip install numpy  
                    pip install pyyaml
                    pip install python-telegram-bot  
+                   apt-get update && apt-get install -y libgl1-mesa-glx  # Instala libGL
                    pip install ultralytics
                 '''
             }
