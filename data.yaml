@@ -1,6 +1,6 @@
-train: D:/Mlops_models/Data_1/train
-val: D:/Mlops_models/Data_1/valid
-test: D:/Mlops_models/Data_1/test
+train: /Data_1/train
+val: /Data_1/valid
+test: /Data_1/test
 
 nc: 1
 names: ['cattle']
