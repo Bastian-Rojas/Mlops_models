@@ -1,10 +1,6 @@
 pipeline {
     agent any
     
-    environment {
-        DATASET_DIR = 'D:/Mlops_models/Data_1'
-    }
-    
     stages {
         stage('Checkout') {
             steps {
@@ -29,13 +25,13 @@ pipeline {
         
         stage('Train Model') {
             steps {
-                sh ". venv/bin/activate && python train.py --dataset ${env.DATASET_DIR}"
+                sh ". venv/bin/activate && python train.py"
             }
         }
         
         stage('Validate Model') {
             steps {
-                sh ". venv/bin/activate && python validate_model.py --dataset ${env.DATASET_DIR}"
+                sh ". venv/bin/activate && python validate_model.py"
             }
         }
         
