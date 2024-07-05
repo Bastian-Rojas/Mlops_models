@@ -28,7 +28,7 @@ def validate_image(image_path, model):
 
 if __name__ == "__main__":
     model_path = 'best.pt'
-    base_dir = r'D:\Mlops_models\Data_1\valid'
+    base_dir = r'./Data_1/valid'
     image_filename = '20_jpg.rf.7b3d4b4e991d768c4a111d4b00db1ced.jpg'
     image_path = os.path.join(base_dir, 'images', image_filename)
     
