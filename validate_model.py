@@ -2,6 +2,7 @@ import torch
 import torchvision.transforms as transforms
 from PIL import Image
 import os
+from ultralytics import YOLO
 
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -10,7 +11,7 @@ transform = transforms.Compose([
 ])
 
 def load_model(model_path):
-    model = torch.load(model_path, map_location=torch.device('cpu'))  
+    model = YOLO(model_path)  # Utiliza la clase YOLO para cargar el modelo correctamente
     model.eval()
     return model
 
@@ -21,13 +22,12 @@ def validate_image(image_path, model):
     with torch.no_grad():
         output = model(image)
     
-    prediction = output.item()  
+    prediction = output[0].item()  # Ajusta esto según la salida específica de tu modelo
     
     return prediction
 
 if __name__ == "__main__":
     model_path = 'best.pt'
-    # Ruta base del directorio de datos
     base_dir = r'D:\Mlops_models\Data_1\valid'
     image_filename = '20_jpg.rf.7b3d4b4e991d768c4a111d4b00db1ced.jpg'
     image_path = os.path.join(base_dir, 'images', image_filename)
