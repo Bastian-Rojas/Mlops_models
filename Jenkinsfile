@@ -44,17 +44,4 @@ pipeline {
             }
         }
     }
-    
-    post {
-        always {
-            sh 'deactivate || true'
-        }
-        success {
-            echo 'Pipeline ejecutado con éxito'
-        }
-        failure {
-            echo 'Pipeline fallido'
-        }
-    }
 }
-
