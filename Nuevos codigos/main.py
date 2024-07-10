@@ -7,7 +7,7 @@ from video_processor import process_video
 from image_processor import process_images
 import telegram_bot
 
-model = load_model("best2.pt")
+model = load_model("best.pt")
 
 
 def start_bot_thread(root):
