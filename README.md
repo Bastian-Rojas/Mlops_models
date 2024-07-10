@@ -9,13 +9,21 @@ Siga los siguientes pasos para configurar el entorno.
 
 Para utilizar el codigo primero hay que construir la imagen de docker utilizando los siguientes comandos:
 
+```bash
 docker compose build
+```
 
+```bash
 docker compose up
+```
+
+## Configuración
 
 Luego para utilizar jenkins se debe ingresar a la siguiente direccion:
 
-Localhost:8080
+```bash
+localhost:8080
+```
 
 Para obtener la contraseña de jenkins se debe ingresar al log de docker y buscar la contraseña de jenkins.
 
@@ -27,7 +35,7 @@ Una vez configurado se debe crear un nuevo trabajo y configurar el repositorio d
 
 Por ultimo debe darle a construir ahora y se ejecutara el pipeline.
 
-Si se quiere utilizar la IA se debe ejecutar el script main.py.
+Si se quiere utilizar la IA se debe ejecutar el script `main.py`.
 
 Una ejecutado el script tiene que seleccionar una de las 3 opciones que se presentan en pantalla.
 
