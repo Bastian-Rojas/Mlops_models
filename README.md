@@ -43,6 +43,10 @@ Si selecciona la opcion "Seleccionar video" se le abrira una ventana para selecc
 
 Si selecciona la opcion "Seleccionar directorio de imagenes" se le abrira una ventana para seleccionar el directorio de imagenes que desea analizar.
 
-Ahora si selecciona la opcion "Iniciar deteccion con telegram" saldra una interfaz grafica que capturara la vaca y dara el procentaje de confianza de que es una vaca, marcandola con un cuadrado verde.
+Ahora si selecciona la opcion "Iniciar deteccion con telegram" saldra una interfaz grafica que capturara la vaca en tiempo real y dara el procentaje de confianza de que es una vaca, marcandola con un cuadrado verde.
+
+Si logra capturar una vaca notificara a un grupo telegram con los porcentajes y si hay mas de una vaca avisara la cantidad de vacas detectas.
+
+Cabe destacar que el bot de telegram lo tiene uno de los integrantes para tener en cuenta al usar este proyecto
 
 Tener en cuenta que para utilizar la opcion "Iniciar deteccion con telegram" se debe tener una camara.
