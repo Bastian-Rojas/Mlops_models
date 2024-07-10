@@ -1,6 +1,10 @@
 pipeline {
     agent any
     
+    environment {
+        MODEL_PATH = 'best.pt' // Define la ruta del modelo entrenado
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -17,7 +21,6 @@ pipeline {
                    pip install torch torchvision torchaudio
                    pip install numpy  
                    pip install pyyaml
-                   pip install python-telegram-bot  
                    pip install ultralytics
                 '''
             }
@@ -26,6 +29,8 @@ pipeline {
         stage('Train Model') {
             steps {
                 sh ". venv/bin/activate && python train.py"
+                // Mueve el modelo entrenado a la ubicación esperada
+                sh "mv runs/train/exp/weights/best.pt ${MODEL_PATH}"
             }
         }
         
@@ -35,11 +40,12 @@ pipeline {
             }
         }
         
-        stage('Use Telegram Bot') {
+        stage('Process Image') {
             steps {
                 script {
-                    def telegramBotPath = "${WORKSPACE}/Nuevos codigos/telegram_bot.py"
-                    sh ". venv/bin/activate && python ${telegramBotPath}"
+                    def imageProcessorPath = "${WORKSPACE}/image_processor.py"
+                    def imagePath = "${WORKSPACE}/images/frisona.jpg"  // Ruta a la imagen frisona.jpg
+                    sh ". venv/bin/activate && python ${imageProcessorPath} ${imagePath}"
                 }
             }
         }
